@@ -30,7 +30,6 @@ time, mark, audio, video {
   padding:0;
   border:0;
   outline:0;
-  font-size:100%;
   vertical-align:baseline;
   background:transparent;
 }                  
@@ -65,20 +64,6 @@ hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 
 input, select { vertical-align:middle; }
 /* END RESET CSS */
 
-
-/* fonts.css from the YUI Library: developer.yahoo.com/yui/
-   Please refer to developer.yahoo.com/yui/fonts/ for font sizing percentages
-
-  There are two custom edits:
-   * remove arial, helvetica from explicit font stack
-   * we normalize monospace styles ourselves
-*/
-body { font:13px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
-
-table { font-size:inherit; font: 100%; }
-
-select, input, textarea, button { font:99% sans-serif; }
-
 /* normalize monospace sizing 
  * en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome
  */
@@ -91,12 +76,6 @@ pre, code, kbd, samp { font-family: monospace, sans-serif; }
  */
 
 
-/* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */ 
-body, select, input, textarea { color: #444; }
-
-/* Headers (h1,h2,etc) have no default font-size or margin,
-   you'll want to define those yourself. */ 
-h1,h2,h3,h4,h5,h6 { font-weight: bold; }
 
 html { 
   /* maxvoltar.com/archive/-webkit-font-smoothing */ 
@@ -108,9 +87,6 @@ html {
  
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
-
-a, a:active, a:visited { color: #607890; }
-a:hover { color: #036; }
 
 
 ul { margin-left: 30px; }
@@ -143,16 +119,6 @@ input[type="checkbox"] { vertical-align: bottom; *vertical-align: baseline; }
 /* hand cursor on clickable input elements */
 label, input[type=button], input[type=submit], button { cursor: pointer; }
 
-
-/* These selection declarations have to be separate.
-   No text-shadow: twitter.com/miketaylr/status/12228805301 
-   Also: hot pink. */
-::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
-::selection { background:#FF5E99; color:#fff; text-shadow: none; } 
-
-/*  j.mp/webkit-tap-highlight-color */
-a:link { -webkit-tap-highlight-color: #FF5E99; } 
-
 /* make buttons play nice in IE:    
    www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
 button {  width: auto; overflow: visible; }
@@ -161,8 +127,13 @@ button {  width: auto; overflow: visible; }
    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
 .ie7 img { -ms-interpolation-mode: bicubic; }
 
+/* These selection declarations have to be separate.
+   No text-shadow: twitter.com/miketaylr/status/12228805301 */
+::-moz-selection { background: #848484; color:#fff; }
+::selection { background:#848484; color:#fff; }
 
-
+h1::-moz-selection, a::-moz-selection { background: #C80000; color:#fff; }
+h1::selection, a::selection { background:#C80000; color:#fff; text-shadow: none; }
 /* 
  * Non-semantic helper classes 
  */
@@ -187,25 +158,6 @@ button {  width: auto; overflow: visible; }
 /* >> The Magnificent CLEARFIX << j.mp/phayesclearfix */
 .clearfix:after  { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .clearfix { zoom: 1; }
-
-
-
-
-
-
- /* Primary Styles
-    Author: 
- */
-
-
-
-
-
-
-
-
-
-
 
 /* 
  * print styles

@@ -1,4 +1,5 @@
-.content
+#about.post
+  %img#portrait{ :src => "anton_mikulcic.jpg", :alt => "Anton Mikulcic" }
   %h1 Hi, my name is Anton Mikulcic
   
   %p I'm a professional software developer from Munich/ Germany and I used to be a Java Geek until I found Ruby on Rails. Yay!
@@ -7,9 +8,12 @@
     You can
     %span.eyecatcher <script TYPE="text/javascript">/*<![CDATA[*/ document.write('<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#97;&#110;&#x74;&#x6f;');document.write('&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;');document.write('&#x6c;&#x65;&#x2e;&#100;&#x65;">');document.write('hire me<span>hire me</span></a>'); /*]]>*/</script>
     for outrageous and cutting-edge projects or join my <a href="http://www.xing.com/profile/Anton_Mikulcic" target="_blank">XING</a>-Network.
+  %p
+    %a.continue{ :href => '#imprint' }
+      Imprint
 
-.content.imprint
-  %p.anton
+#imprint.post
+  %p.address
     %a{ :href => "http://www.codepuzzle.de/" } Anton Mikulcic
     %br
     Hans-Mielich-Str. 26
@@ -19,3 +23,6 @@
     0151&nbsp;<span style="display: none;">12 34 56 78 90</span>/&nbsp;<span style="display: none;">12 34 56 78 90</span>27&nbsp;<span style="display: none;">12 34 56 78 90</span>03&nbsp;<span style="display: none;">12 34 56 78 90</span>84&nbsp;<span style="display: none;">12 34 56 78 90</span>42
   %p
     <script TYPE="text/javascript">/*<![CDATA[*/ document.write('<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#97;&#110;&#x74;&#x6f;');document.write('&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;');document.write('&#x6c;&#x65;&#x2e;&#100;&#x65;">');document.write('&#97;&#110;&#x74;&#x6f;');document.write('&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;');document.write('&#x6c;&#x65;&#x2e;&#100;&#x65;');document.write('</a>'); /*]]>*/</script>
+  %p
+    %a.continue{ :href => '#home' }
+      Back
