@@ -39,7 +39,7 @@ $(document).ready(function() {
         visibility: 'visible',
         opacity: 0.4,
         fontSize: '40px'
-      }).animate({  
+      }).animate({
         opacity: 0,
         fontSize: '150px'
       }, 300, function() { $(this).hide(); });
