@@ -36,7 +36,7 @@ time, mark, audio, video {
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section { 
-    display:block;
+  display:block;
 }
 
 nav ul { list-style:none; }
@@ -95,12 +95,12 @@ ol { margin-left: 30px; list-style-type: decimal; }
 small { font-size: 85%; }
 strong, th { font-weight: bold; }
 
-td, td img { vertical-align: top; } 
+td, td img { vertical-align: top; }
 
 sub { vertical-align: sub; font-size: smaller; }
 sup { vertical-align: super; font-size: smaller; }
 
-pre { 
+pre {
   padding: 15px; 
   
   /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
@@ -156,7 +156,7 @@ h1::selection, a::selection { background:#C80000; color:#fff; text-shadow: none;
 .invisible { visibility: hidden; }
 
 /* >> The Magnificent CLEARFIX << j.mp/phayesclearfix */
-.clearfix:after  { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .clearfix { zoom: 1; }
 
 /* 

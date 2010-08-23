@@ -3,7 +3,7 @@
   %h1 Hi, my name is Anton Mikulcic
   
   %p I'm a professional software developer from Munich/ Germany and I used to be a Java Geek until I found Ruby on Rails. Yay!
-  %p Codepuzzle is my freelancer promotion label and stands for a self-imposed dogma of writing efficient and reusable code that <i>fits</i>.
+  %p Up to now I design and develop web applications. People also like me to implement their UX related stuff like jQuery or experimental CSS.
   %p
     You can
     %span.eyecatcher <script TYPE="text/javascript">/*<![CDATA[*/ document.write('<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#97;&#110;&#x74;&#x6f;');document.write('&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;');document.write('&#x6c;&#x65;&#x2e;&#100;&#x65;">');document.write('hire me<span>hire me</span></a>'); /*]]>*/</script>
@@ -13,16 +13,22 @@
       Imprint
 
 #imprint.post
+  %p Codepuzzle is my freelancer promotion label and stands for a self-imposed dogma of writing efficient and reusable code that <i>fits</i>.
+  %p Here's where you can contact me:
+  %p#skype
+    %script{ :type => "text/javascript", :src => "http://download.skype.com/share/skypebuttons/js/skypeCheck.js" }
+    %a{ :href => "skype:codepuzzle?call" }
+      %img{ :src => "http://mystatus.skype.com/balloon/codepuzzle", :style => "border: none;", :width => "150", :height => "60", :alt => "My Skype status" }
   %p.address
     %a{ :href => "http://www.codepuzzle.de/" } Anton Mikulcic
     %br
     Hans-Mielich-Str. 26
     %br
     81543 Munich / Germany
-  %p
-    0151&nbsp;<span style="display: none;">12 34 56 78 90</span>/&nbsp;<span style="display: none;">12 34 56 78 90</span>27&nbsp;<span style="display: none;">12 34 56 78 90</span>03&nbsp;<span style="display: none;">12 34 56 78 90</span>84&nbsp;<span style="display: none;">12 34 56 78 90</span>42
-  %p
+  %p.address.highlighted
+    Phone: +49 151&nbsp;<span class="visuallyhidden">12 34 56 78 90</span>/&nbsp;<span class="visuallyhidden">12 34 56 78 90</span>27&nbsp;<span class="visuallyhidden">12 34 56 78 90</span>03&nbsp;<span class="visuallyhidden">12 34 56 78 90</span>84&nbsp;<span class="visuallyhidden">12 34 56 78 90</span>42
+  %p.address
     <script TYPE="text/javascript">/*<![CDATA[*/ document.write('<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#97;&#110;&#x74;&#x6f;');document.write('&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;');document.write('&#x6c;&#x65;&#x2e;&#100;&#x65;">');document.write('&#97;&#110;&#x74;&#x6f;');document.write('&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;');document.write('&#x6c;&#x65;&#x2e;&#100;&#x65;');document.write('</a>'); /*]]>*/</script>
   %p
-    %a.continue{ :href => '#home' }
+    %a.back.continue{ :href => '#home' }
       Back
