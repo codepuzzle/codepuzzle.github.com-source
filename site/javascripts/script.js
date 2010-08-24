@@ -1,10 +1,21 @@
 $(document).ready(function() {
 
+  $('#eyecatcher').html('<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#97;&#110;&#x74;&#x6f;&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;&#x6c;&#x65;&#x2e;&#100;&#x65;">hire me<span>hire me</span></a>');
+  $('#m').html('<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#97;&#110;&#x74;&#x6f;&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;&#x6c;&#x65;&#x2e;&#100;&#x65;">&#97;&#110;&#x74;&#x6f;&#110;&#64;&#x63;&#x6f;&#100;&#x65;&#112;&#117;&#x7a;&#122;&#x6c;&#x65;&#x2e;&#100;&#x65;</a>');
+
   $.browser.mobile = /(IEMobile|Windows CE|NetFront|PlayStation|PLAYSTATION|like Mac OS X|MIDP|UP\.Browser|Symbian|Nintendo|Android)/.test(navigator.userAgent);
+
+  var currentPost = null;
+  if (window.location.hash.length > 0) {
+    currentPost = $(window.location.hash);
+  }
+  if (currentPost === null || currentPost.size() == 0) {
+    currentPost = $('div.post:first');
+  }
+  currentPost.show();
 
   //
 
-  $('div.post:first').show();
   $('div.post a.continue').click(function(e) {
     e.preventDefault();
     var current = $(this).parents('div.post');
@@ -47,3 +58,13 @@ $(document).ready(function() {
   }
 
 });
+
+// usage: log('inside coolFunc',this,arguments);
+// paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
+window.log = function(){
+  log.history = log.history || [];   // store logs to an array for reference
+  log.history.push(arguments);
+  if(this.console){
+    console.log( Array.prototype.slice.call(arguments) );
+  }
+};
