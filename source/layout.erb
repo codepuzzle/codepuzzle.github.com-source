@@ -29,21 +29,58 @@
        Respond is a polyfill for min/max-width media queries. Modernizr enables HTML5 elements & feature detects; 
        for optimal performance, create your own custom Modernizr build: www.modernizr.com/download/ -->
   <script src="javascripts/lib/modernizr-2.0.6.min.js"></script>
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'VT323' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
 </head>
 
 <body class="<%= page_classes %>">
 
   <div id="container">
-    <header>
-
+    <header id="header">
     </header>
-    <div id="main" role="main">
-      <%= yield %>
+    <div id="vim">
+      <div id="nerdtree">
+        <ol>
+          <li>asd</li>
+        </ol>
+        <pre></pre>
+      </div>
+      <div id="main" role="main">
+        <%= yield %>
+        <pre>~
+~
+~
+~</pre>
+      </div>
     </div>
-    <footer>
-
+    <footer id="footer">
+      <span id="filename"><%= yield_content :filename %></span>
+      <span id="content-changed">[+]</span>
     </footer>
   </div> <!--! end of #container -->
+<pre id="ascii">
+
+
+                 .___                                 .__
+  ____  ____   __| _/____ ______  __ _________________|  |   ____
+_/ ___\/  _ \ / __ |/ __ \\____ \|  |  \___   /\___   /  | _/ __ \
+\  \__(  <_> ) /_/ \  ___/|  |_> >  |  //    /  /    /|  |_\  ___/
+ \___  >____/\____ |\___  >   __/|____//_____ \/_____ \____/\___  >
+     \/           \/    \/|__|               \/      \/         \/
+                                              &copy; 2012 Anton Mikulcic
+</pre>
 
 
   <!-- JavaScript at the bottom for fast page loading -->

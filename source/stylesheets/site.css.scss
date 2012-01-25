@@ -1,33 +1,113 @@
 @import "compass";
 @import "vendor/html5-boilerplate";
 
+$background-color: #242424;
+$meta-color: #444;
+$canvas-color: $background-color;
+$canvas-meta-color: #303030;
+$linenumbers-color: lighten($background-color, 30%);
+$linenumbers-background-color: #000;
+
 $link-color:         #0388a6;
 $link-hover-color:   #009ce0;
 $link-focus-color:   false;
 $link-active-color:  false;
 $link-visited-color: false;
 
-$font-color:  #2a2a2a;
-$font-family: sans-serif;
-$base-font-size:   12px;
-$base-line-height: 18px;
+$font-color:  #fff;
+$font-family: monospace, sans-serif;
+$base-font-size:   14px;
+$base-line-height: 20px;
 
 $total-cols: 12;
 $col-width: 4em;
 $gutter-width: 1em;
 $side-gutter-width: $gutter-width;
 
+$nerdtree-width: 200px;
+
 @include global-reset;
 
 body {
   font-family: $font-family;
-  color: $font-color; 
+  color: $font-color;
+  background-color: $background-color;
+  font-size: $base-font-size;
+}
+
+#ascii {
+  background-color: $background-color;
+  width: 540px;
+  display: block;
+  margin: 0 auto;
+  color: lighten($background-color, 5%);
+}
+
+#footer {
+  font-style: italic;
+  @include clearfix;
 }
 
 a {
   @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color);
 }
 
+#nerdtree ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ol {
+  background-color: $linenumbers-background-color;
+  list-style: initial;
+  list-style-type: decimal;
+  padding-left: 2.8em;
+
+  li {
+    background-color: $canvas-color;
+
+    code {
+      color: $font-color;
+    }
+  }
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+pre, li {
+  color: $linenumbers-color;
+}
+
+#container {
+  background-color: $meta-color;
+}
+
 #main {
-  padding: 50px;
+  margin-left: $nerdtree-width;
+}
+
+#main, #nerdtree {
+  background-color: $canvas-meta-color;
+}
+
+#vim {
+  @include clearfix;
+}
+
+#nerdtree {
+  width: $nerdtree-width;
+  float: left;
+  overflow: hidden;
+}
+
+#cursor {
+  background-color: $font-color;
+  color: $canvas-color;
+
+  &.blink {
+    background-color: $canvas-color;
+    color: $font-color;
+  }
 }
