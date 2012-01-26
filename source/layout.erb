@@ -53,12 +53,23 @@
     <div id="vim">
       <div id="nerdtree">
         <ol>
-          <li>asd</li>
+          <li>&nbsp;</li>
+          <li><a href="javascript:history.back();">.. (up a dir)</a></li>
+          <li><a class="nerdtree-blank" href="/">codepuzzle.de<span class="slashes">/</span></a></li>
+          <li>
+            <a class="nerdtree-folder" href="/">&#9656; content</a>
+            <ol>
+              <li><a href="index.html">index</a></li>
+              <li><a href="skills.html">skills</a></li>
+              <li><a href="index.html">contact</a></li>
+            </ol>
+          </li>
         </ol>
         <pre></pre>
       </div>
       <div id="main" role="main">
-        <%= yield %>
+        <pre id="vimify"><%= yield %></pre>
+        <ol id="vim-content"></ol>
         <pre>~
 ~
 ~
@@ -68,6 +79,8 @@
     <footer id="footer">
       <span id="filename"><%= yield_content :filename %></span>
       <span id="content-changed">[+]</span>
+      <span id="caret-position"></span>
+      <span id="caret-percentage"></span>
     </footer>
   </div> <!--! end of #container -->
 <pre id="ascii">

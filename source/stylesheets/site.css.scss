@@ -25,6 +25,7 @@ $gutter-width: 1em;
 $side-gutter-width: $gutter-width;
 
 $nerdtree-width: 200px;
+$main-margin-left: $nerdtree-width + 7;
 
 @include global-reset;
 
@@ -40,11 +41,11 @@ body {
   width: 540px;
   display: block;
   margin: 0 auto;
-  color: lighten($background-color, 5%);
+  color: lighten($background-color, 8%);
 }
 
 #footer {
-  font-style: italic;
+  padding-left: $main-margin-left;
   @include clearfix;
 }
 
@@ -52,9 +53,34 @@ a {
   @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color);
 }
 
-#nerdtree ol {
-  list-style-type: none;
-  padding-left: 0;
+#nerdtree {
+  ol {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    li a {
+      color: $font-color;
+      padding-left: 15px;
+    }
+
+    a {
+      display: block;
+
+      &:hover {
+        background-color: $canvas-meta-color;
+      }
+    }
+  }
+}
+
+a, a:visited, a:active {
+  color: #66a4e6;
+}
+
+.slashes {
+  color: #cadb68;
 }
 
 ol {
@@ -85,7 +111,7 @@ pre, li {
 }
 
 #main {
-  margin-left: $nerdtree-width;
+  margin-left: $main-margin-left;
 }
 
 #main, #nerdtree {
@@ -102,7 +128,7 @@ pre, li {
   overflow: hidden;
 }
 
-#cursor {
+#caret {
   background-color: $font-color;
   color: $canvas-color;
 
@@ -110,4 +136,14 @@ pre, li {
     background-color: $canvas-color;
     color: $font-color;
   }
+}
+
+#caret-position {
+  position: absolute;
+  right: 100px;
+}
+
+#caret-percentage {
+  position: absolute;
+  right: 3px;
 }
