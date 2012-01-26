@@ -35,11 +35,26 @@ App =
       500
     )
 
+  moveCaretByCommand: (command) ->
+    line = App.vimBuffer.find("li:nth-child(#{App.currentLine})").text()
+    if command == 'word'
+      x = line.substring(App.currentPosition).search(/[^\w]\w/)
+      x += 2 if x > -1
+    else if command == 'end'
+      x = line.substring(App.currentPosition).search(/\w([^\w]|$)/)
+      x += 1 if x > -1
+    else if command == 'back'
+      x = line.substring(0, App.currentPosition).search(/[^\w]\w/)
+      x = -x if x > -1
+    App.moveCaret(x, 0) if x and x > 0
+
   moveCaret: (relX, relY) ->
     x = App.currentPosition + relX
     y = App.currentLine + relY
     if (x > 0 and y > 0) and (x != App.currentPosition or y != App.currentLine)
       caretNode = App.vimBuffer.find("li:nth-child(#{y}) span:nth-child(#{x})")
+      if relY != 0 and caretNode.length == 0
+        caretNode = App.vimBuffer.find("li:nth-child(#{y}) span:last-child")
       if caretNode.length > 0
         App.currentPosition = x
         App.currentLine = y
@@ -53,12 +68,32 @@ App =
     KEY_UP = 38
     KEY_RIGHT = 39
     KEY_DOWN = 40
+    KEY_H = 72
+    KEY_J = 74
+    KEY_K = 75
+    KEY_L = 76
+    KEY_W = 87
+    KEY_E = 69
+    KEY_B = 66
+    KEY_SPACE = 32
+    KEY_BACKSPACE = 8
     interactions = {}
     interactions[KEY_LEFT] = -> App.moveCaret(-1, 0)
     interactions[KEY_UP] = -> App.moveCaret(0, -1)
     interactions[KEY_RIGHT] = -> App.moveCaret(1, 0)
     interactions[KEY_DOWN] = -> App.moveCaret(0, 1)
-    $(window).keydown (e) -> interactions[e.which || e.keyCode]()
+    interactions[KEY_SPACE] = interactions[KEY_RIGHT]
+    interactions[KEY_BACKSPACE] = interactions[KEY_LEFT]
+    interactions[KEY_H] = interactions[KEY_LEFT]
+    interactions[KEY_J] = interactions[KEY_DOWN]
+    interactions[KEY_K] = interactions[KEY_UP]
+    interactions[KEY_L] = interactions[KEY_RIGHT]
+    interactions[KEY_W] = -> App.moveCaretByCommand('word')
+    interactions[KEY_E] = -> App.moveCaretByCommand('end')
+    interactions[KEY_B] = -> App.moveCaretByCommand('back')
+    $(window).keydown (e) ->
+      e.preventDefault()
+      interactions[e.which || e.keyCode]()
     $(document.body).trigger('click')
 
   renderNerdtreeTildes: ->
@@ -75,7 +110,7 @@ App =
     App.vimBuffer.empty()
     i = 0
     for line in lines
-      if i > 0 and i < lines.length - 1
+      if i > 1 and i < lines.length - 1
         lineHtml = ''
         skipHtmlTag = false
         for char in line.split ''
