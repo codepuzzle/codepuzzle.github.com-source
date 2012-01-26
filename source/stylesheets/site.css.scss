@@ -128,7 +128,7 @@ pre, li {
   overflow: hidden;
 }
 
-#caret {
+.caret, #caret {
   background-color: $font-color;
   color: $canvas-color;
 
