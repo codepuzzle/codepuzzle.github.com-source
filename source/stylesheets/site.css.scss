@@ -36,9 +36,13 @@ body {
   font-size: $base-font-size;
 }
 
+#vimify {
+  display: none;
+}
+
 #ascii {
   background-color: $background-color;
-  width: 540px;
+  width: 570px;
   display: block;
   margin: 0 auto;
   color: lighten($background-color, 8%);
@@ -112,6 +116,7 @@ pre, li {
 
 #main {
   margin-left: $main-margin-left;
+  height: 518px;
 }
 
 #main, #nerdtree {

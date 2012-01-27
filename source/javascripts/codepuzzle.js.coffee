@@ -5,26 +5,19 @@ App =
   currentPosition: 0,
   numOfLines: 0,
 
-  labelCaretPercentage: ->
-    if App.currentLine == 0
-      p = "Top"
-    else if App.currentLine == App.numOfLines
-      p = "Bot"
-    else
-      p = "#{App.numOfLines / App.currentLine * 100}%"
-    $('#caret-percentage').text p
-
-  labelCaretPosition: ->
-    $('#caret-position').text "#{App.currentLine},#{App.currentPosition}"
+  labelCaretPosition: (x = App.currentPosition, y = App.currentLine) ->
+    $('#caret-position').text "#{y},#{x}"
 
   initCaret: ->
-    return if $('.caret').length > 0
     lineSpans = App.vimBuffer.find('li:last-child span')
-    App.caretNode = lineSpans.last()
+    if $('.caret').length > 0
+      $('.caret:not(:first)').removeClass('caret')
+      App.caretNode = $('.caret').first()
+    else
+      App.caretNode =  lineSpans.last()
     App.caretNode.addClass('caret')
     App.currentLine = App.numOfLines
     App.currentPosition = lineSpans.length
-    App.labelCaretPercentage()
     App.labelCaretPosition()
     App.initCaretBlink()
 
@@ -61,6 +54,7 @@ App =
         App.caretNode.removeClass('caret')
         App.caretNode = caretNode
         App.caretNode.addClass('caret')
+        App.labelCaretPosition()
         App.initCaretBlink()
 
   initCaretInteraction: ->
@@ -96,13 +90,14 @@ App =
     $(document.body).trigger('click')
 
   renderNerdtreeTildes: ->
-    tildePre = $('#nerdtree pre')
-    num = $('#vim-content li').length * 3
-    while num -= 1
-      tildePre.text("#{tildePre.text()}~\n")
+    $('#nerdtree-tildes, #main-tildes').each ->
+      tildePre = $(this)
+      num = 60
+      while num -= 1
+        tildePre.text("#{tildePre.text()}~\n")
     $('#nerdtree').height $('#main').height()
 
-  vimify: ->
+  vimify: (afterRender) ->
     vimifiable = $('#vimify')
     lines = vimifiable.html().split '\n'
     App.vimBuffer = $('#vim-content')
@@ -122,19 +117,36 @@ App =
           else if skipHtmlTag
             lineHtml += char
           else
-            lineHtml += "<span>#{char}</span>"
+            lineHtml += "<span style='display: none;'>#{char}</span>"
         lineHtml = '<span>&nbsp;</span>' if lineHtml == ''
-        App.vimBuffer.append "<li><code>#{lineHtml}</code></li>"
+        lineNode = $("<li style='display: none;'><code>#{lineHtml}</code></li>")
+        App.vimBuffer.append lineNode
+        App.renderTypingEffect lineNode, i
       i++
     vimifiable.empty()
+    # after rendering callback in queue
+    cbInterval = window.setInterval(->
+        if App.vimBuffer.find('span').queue()[0] != 'inprogress'
+          window.clearInterval cbInterval
+          afterRender()
+      , 400)
+
+  renderTypingEffect: (lineNode, lineIdx) ->
+    lineNode.find('span').each (idx) ->
+      caret = $(this)
+      caret.delay(100).show(0, ->
+        App.tmpCaret?.removeClass('caret')
+        App.tmpCaret = caret
+        lineNode.show() if idx == 0
+        App.labelCaretPosition(idx, lineIdx)
+      ).addClass('caret')
 
   init: ->
-    App.vimify()
-    App.numOfLines = $('#vim-content li').length
-    if App.numOfLines > 0
-      App.initCaret()
-      App.initCaretInteraction()
-      App.renderNerdtreeTildes()
+    App.renderNerdtreeTildes()
+    App.vimify ->
+      App.numOfLines = $('#vim-content li').length
+      if App.numOfLines > 0
+        App.initCaret()
+        App.initCaretInteraction()
 
-$ ->
-  App.init()
+$ -> App.init()
