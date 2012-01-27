@@ -4,6 +4,7 @@ App =
   currentLine: 0,
   currentPosition: 0,
   numOfLines: 0,
+  enableTypingEffect: false,
 
   labelCaretPosition: (x = App.currentPosition, y = App.currentLine) ->
     $('#caret-position').text "#{y},#{x}"
@@ -135,13 +136,18 @@ App =
       i++
     vimifiable.empty()
     # after rendering callback in queue
-    cbInterval = window.setInterval(->
-        if App.vimBuffer.find('span').queue()[0] != 'inprogress'
-          window.clearInterval cbInterval
-          afterRender()
-      , 400)
+    if App.enableTypingEffect
+      cbInterval = window.setInterval(->
+          if App.vimBuffer.find('span').queue()[0] != 'inprogress'
+            window.clearInterval cbInterval
+            afterRender()
+        , 400)
+    else
+      App.vimBuffer.find('li:hidden, span:hidden').show()
+      afterRender()
 
   renderTypingEffect: (lineIdx) ->
+    return unless App.enableTypingEffect
     lineNode = App.vimBuffer.find('li:last-child')
     lineNode.find('span').each (idx) ->
       caret = $(this)
@@ -154,6 +160,7 @@ App =
 
   init: ->
     App.renderNerdtreeTildes()
+    App.enableTypingEffect = $.browser.webkit and (screen.width >= 480)
     App.vimify ->
       App.numOfLines = $('#vim-content li').length
       if App.numOfLines > 0
