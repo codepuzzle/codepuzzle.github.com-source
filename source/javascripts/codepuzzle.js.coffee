@@ -45,17 +45,27 @@ App =
     x = App.currentPosition + relX
     y = App.currentLine + relY
     if (x > 0 and y > 0) and (x != App.currentPosition or y != App.currentLine)
-      caretNode = App.vimBuffer.find("li:nth-child(#{y}) span:nth-child(#{x})")
-      if relY != 0 and caretNode.length == 0
-        caretNode = App.vimBuffer.find("li:nth-child(#{y}) span:last-child")
+      lineNode = App.vimBuffer.find("li:nth-child(#{y})")
+      caretNode = lineNode.find("span:nth-child(#{x})")
+      if caretNode.length == 0
+        chars = lineNode.find("span")
+        if relX == -1
+          x = chars.length - 1
+          caretNode = $(chars[x - 1])
+        if relY != 0
+          caretNode = chars.last()
+          caretPositionJumped = chars.length
       if caretNode.length > 0
         App.currentPosition = x
         App.currentLine = y
         App.caretNode.removeClass('caret')
         App.caretNode = caretNode
         App.caretNode.addClass('caret')
-        App.labelCaretPosition()
         App.initCaretBlink()
+        if caretPositionJumped
+          App.labelCaretPosition(caretPositionJumped, y)
+        else
+          App.labelCaretPosition()
 
   initCaretInteraction: ->
     KEY_LEFT = 37
@@ -119,9 +129,9 @@ App =
           else
             lineHtml += "<span style='display: none;'>#{char}</span>"
         lineHtml = '<span>&nbsp;</span>' if lineHtml == ''
-        lineNode = $("<li style='display: none;'><code>#{lineHtml}</code></li>")
+        lineNode = "<li style='display: none;'><code>#{lineHtml}</code></li>"
         App.vimBuffer.append lineNode
-        App.renderTypingEffect lineNode, i
+        App.renderTypingEffect i
       i++
     vimifiable.empty()
     # after rendering callback in queue
@@ -131,7 +141,8 @@ App =
           afterRender()
       , 400)
 
-  renderTypingEffect: (lineNode, lineIdx) ->
+  renderTypingEffect: (lineIdx) ->
+    lineNode = App.vimBuffer.find('li:last-child')
     lineNode.find('span').each (idx) ->
       caret = $(this)
       caret.delay(100).show(0, ->
