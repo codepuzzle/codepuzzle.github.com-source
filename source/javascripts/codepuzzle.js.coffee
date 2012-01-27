@@ -43,9 +43,9 @@ App =
     else if command == 'end'
       x = line.substring(App.currentPosition).search(/\w([^\w]|$)/)
       x += 1 if x > -1
-    else if command == 'back'
-      x = line.substring(0, App.currentPosition).search(/[^\w]\w/)
-      x = -x if x > -1
+    #else if command == 'back'
+    #  x = line.substring(0, App.currentPosition - 1).search(/[^\w]\w/)
+    #  x = x - App.currentPosition if x > -1
     App.moveCaret(x, 0) if x and x > 0
 
   moveCaret: (relX, relY) ->
@@ -92,8 +92,7 @@ App =
     interactions[KEY_E] = -> App.moveCaretByCommand('end')
     interactions[KEY_B] = -> App.moveCaretByCommand('back')
     $(window).keydown (e) ->
-      e.preventDefault()
-      interactions[e.which || e.keyCode]()
+      try interactions[e.which || e.keyCode]() catch e
     $(document.body).trigger('click')
 
   renderNerdtreeTildes: ->
