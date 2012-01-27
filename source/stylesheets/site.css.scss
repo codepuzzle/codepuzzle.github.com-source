@@ -25,7 +25,8 @@ $gutter-width: 1em;
 $side-gutter-width: $gutter-width;
 
 $nerdtree-width: 200px;
-$main-margin-left: $nerdtree-width + 7;
+//$main-margin-left: $nerdtree-width + 7;
+$main-margin-left: 7;
 
 @include global-reset;
 
@@ -131,6 +132,10 @@ pre, li {
   width: $nerdtree-width;
   float: left;
   overflow: hidden;
+}
+
+#nerdtree {
+  display: none;
 }
 
 .caret, #caret {
