@@ -1,11 +1,8 @@
-#nerdtree, #ascii {
+#nerdtree, #ascii, #main-tildes {
   display: none;
 }
 
 div#main {
   margin-left: 7px;
-}
-
-#vimify {
-  display: block !important;
+  height: auto !important;
 }
