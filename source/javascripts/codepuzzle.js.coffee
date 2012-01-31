@@ -110,6 +110,7 @@ App =
 
   vimify: (afterRender) ->
     vimifiable = $('#vimify')
+    vimifiable.find('br').remove()
     lines = vimifiable.html().split '\n'
     App.vimBuffer = $('#vim-content')
     App.vimBuffer.empty()
