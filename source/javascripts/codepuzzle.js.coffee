@@ -169,3 +169,10 @@ App =
         App.initCaretInteraction()
 
 $ -> App.init()
+
+ua = navigator.userAgent.toLowerCase()
+uaClasses = ['webkit', 'presto', 'gecko', 'msie'] # Order is important
+for uaClass in uaClasses
+  if ua.indexOf(uaClass) != -1
+    $('html').addClass(uaClass)
+    break
