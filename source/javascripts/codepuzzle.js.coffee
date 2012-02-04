@@ -106,7 +106,6 @@ App =
       num = 60
       while num -= 1
         tildePre.text("#{tildePre.text()}~\n")
-    $('#nerdtree').height $('#main').height()
 
   vimify: (afterRender) ->
     vimifiable = $('#vimify')
@@ -159,6 +158,12 @@ App =
         App.labelCaretPosition(idx, lineIdx)
       ).addClass('caret')
 
+  applyHeightToWidthRatio: ->
+    dh = if $.browser.webkit then 44 else 88
+    h = dh + $('#vim-content').height()
+    $('#main').height h
+    $('#nerdtree').height h
+
   init: ->
     App.renderNerdtreeTildes()
     App.enableTypingEffect = $.browser.webkit and (screen.width >= 480)
@@ -167,6 +172,8 @@ App =
       if App.numOfLines > 0
         App.initCaret()
         App.initCaretInteraction()
+        App.applyHeightToWidthRatio()
+    $(window).resize App.applyHeightToWidthRatio
 
 $ -> App.init()
 

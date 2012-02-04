@@ -25,6 +25,7 @@ $gutter-width: 1em;
 $side-gutter-width: $gutter-width;
 
 $nerdtree-width: 200px;
+$ascii-width: 570px;
 //$main-margin-left: $nerdtree-width + 7;
 $main-margin-left: 7;
 
@@ -43,7 +44,7 @@ body {
 
 #ascii {
   background-color: $background-color;
-  width: 570px;
+  width: $ascii-width;
   display: block;
   margin: 0 auto;
   color: lighten($background-color, 8%);
@@ -113,6 +114,7 @@ pre, li {
 
 #container {
   background-color: $meta-color;
+  @include min-width($ascii-width);
 }
 
 #main {

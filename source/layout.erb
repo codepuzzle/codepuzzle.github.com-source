@@ -8,27 +8,17 @@
 <head>
   <meta charset="utf-8">
 
-  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
-       More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
   <%= stylesheet_link_tag "site.css" %>
   <link media="only screen and (max-device-width: 480px)" href="/stylesheets/iphone.css" type="text/css" rel="stylesheet" />
   <%= yield_content :head %>
 
-  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
-
-  <!-- All JavaScript at the bottom, except this Modernizr build incl. Respond.js
-       Respond is a polyfill for min/max-width media queries. Modernizr enables HTML5 elements & feature detects; 
-       for optimal performance, create your own custom Modernizr build: www.modernizr.com/download/ -->
   <script src="javascripts/lib/modernizr-2.0.6.min.js"></script>
   <noscript>
     <style type="text/css">
@@ -73,7 +63,7 @@
       <span id="caret-position"></span>
       <span id="caret-percentage">Top</span>
     </footer>
-  </div> <!--! end of #container -->
+  </div>
 <pre id="ascii">
 
 
@@ -87,19 +77,11 @@ _/ ___\/  _ \ / __ |/ __ \\____ \|  |  \___   /\___   /  | _/ __ \
 </pre>
 
 
-  <!-- JavaScript at the bottom for fast page loading -->
-
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="javascripts/lib/jquery-1.6.2.min.js"><\/script>')</script>
 
-
-  <!-- scripts concatenated and minified via build script -->
   <%= javascript_include_tag "codepuzzle" %>
-  <!-- end scripts -->
 
-
-  <!-- Change UA-XXXXX-X to be your site's ID -->
   <script>
     window._gaq = [['_setAccount', 'UA-5508260-1'], ['_trackPageview'], ['_trackPageLoadTime']];
     Modernizr.load({
@@ -108,9 +90,7 @@ _/ ___\/  _ \ / __ |/ __ \\____ \|  |  \___   /\___   /  | _/ __ \
   </script>
 
 
-  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
-       chromium.org/developers/how-tos/chrome-frame-getting-started -->
-  <!--[if lt IE 7 ]>
+  <!--[if lt IE 9 ]>
     <script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script defer>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
   <![endif]-->
