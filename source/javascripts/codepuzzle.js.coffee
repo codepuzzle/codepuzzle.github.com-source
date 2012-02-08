@@ -60,7 +60,7 @@ App =
         App.currentPosition = x
         App.currentLine = y
         App.caretNode.removeClass('caret')
-        App.caretNode = caretNode
+        App.caretNode = caretNode.first()
         App.caretNode.addClass('caret')
         App.initCaretBlink()
         if caretPositionJumped
@@ -164,9 +164,15 @@ App =
     $('#main').height h
     $('#nerdtree').height h
 
+  degradesGracefully: ->
+    if screen.width <= 480
+      $('#vimify').show()
+      return true
+
   init: ->
+    return if App.degradesGracefully()
     App.renderNerdtreeTildes()
-    App.enableTypingEffect = $.browser.webkit and (screen.width >= 480)
+    App.enableTypingEffect = $.browser.webkit and screen.width >= 480
     App.vimify ->
       App.numOfLines = $('#vim-content li').length
       if App.numOfLines > 0

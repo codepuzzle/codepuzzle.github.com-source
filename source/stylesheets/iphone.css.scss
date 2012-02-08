@@ -1,5 +1,16 @@
-#nerdtree, #ascii, #main-tildes {
+@import "compass";
+
+#nerdtree, #ascii, #main-tildes, #vim-content, #footer {
   display: none;
+}
+
+#vim, #vimify, #main, #container {
+  display: block !important;
+  @include min-width(none);
+  width: 480px;
+  padding: 0;
+  margin: 0;
+  height: auto !important;
 }
 
 div#main {
